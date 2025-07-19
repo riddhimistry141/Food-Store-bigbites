@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGO_URL, {
 
 app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views')));
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
