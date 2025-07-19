@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Big bites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Colors */
+        :root {
+            --skin-tone-light: #f2d6c1; /* Light Skin Tone */
+            --dark-yellow: #ffcc00; /* Dark Yellow */
+            --dark-green: #004d00; /* Dark Green */
+        }
+    </style>
+</head>
+<body class="bg-[var(--skin-tone-light)] text-gray-900 flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-[var(--dark-green)] text-[var(--dark-yellow)] p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">Big bites</a>
+            <div>
+                <a href="/" class="hover:underline px-4">Home</a>
+                <a href="/about" class="hover:underline px-4">About Us</a>
+                <a href="/contact" class="hover:underline px-4">Contact Us</a>
+                <% if (user) { %>
+                    <a href="/logout" class="hover:underline px-4">Logout</a>
+                <% } else { %>
+                    <a href="/login" class="hover:underline px-4">Login</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="flex-grow p-4">
+        <div class="w-full max-w-2xl bg-white text-gray-900 p-8 rounded-lg shadow-md mx-auto">
+            <h1 class="text-2xl font-bold mb-6">Contact Us</h1>
+            <p class="mb-4">We'd love to hear from you! Whether you have a question, feedback, or just want to say hello, please reach out to us using the form below.</p>
+
+            <form action="/send-message" method="post" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-lg font-semibold mb-2">Name</label>
+                    <input type="text" id="name" name="name" required class="w-full p-2 rounded-md border border-gray-300">
+                </div>
+                <div>
+                    <label for="email" class="block text-lg font-semibold mb-2">Email</label>
+                    <input type="email" id="email" name="email" required class="w-full p-2 rounded-md border border-gray-300">
+                </div>
+                <div>
+                    <label for="message" class="block text-lg font-semibold mb-2">Message</label>
+                    <textarea id="message" name="message" rows="4" required class="w-full p-2 rounded-md border border-gray-300"></textarea>
+                </div>
+                <button type="submit" class="bg-[var(--dark-yellow)] text-[var(--dark-green)] py-2 px-4 rounded-md hover:bg-yellow-500">Send Message</button>
+            </form>
+
+            <div class="mt-8">
+                <h2 class="text-xl font-bold mb-4">Our Address</h2>
+                <p>123 Flavor Street, Gourmet City, GC 45678</p>
+                <p class="mt-2">Phone: (123) 456-7890</p>
+                <p>Email: <a href="mailto:info@bigbites.com" class="text-[var(--dark-yellow)]">info@bigbites.com</a></p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

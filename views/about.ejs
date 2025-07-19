@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Big bites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --skin-tone-light: #f2d6c1;
+            --dark-yellow: #ffcc00; 
+            --dark-green: #004d00; 
+        }
+    </style>
+</head>
+<body class="bg-[var(--skin-tone-light)] text-gray-900 flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-[var(--dark-green)] text-[var(--dark-yellow)] p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">Big bites</a>
+            <div>
+                <a href="/" class="hover:underline px-4">Home</a>
+                <a href="/about" class="hover:underline px-4">About Us</a>
+                <a href="/contact" class="hover:underline px-4">Contact Us</a>
+                <% if (user) { %>
+                    <a href="/logout" class="hover:underline px-4">Logout</a>
+                <% } else { %>
+                    <a href="/login" class="hover:underline px-4">Login</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+    
+
+    <main class="flex-grow p-4">
+        <div class="w-full max-w-2xl bg-white text-gray-900 p-8 rounded-lg shadow-md mx-auto">
+            <h1 class="text-2xl font-bold mb-6">About Us</h1>
+            <p class="mb-4">At Big bites, we are proud to have a talented web development team dedicated to creating exceptional digital experiences. Our team combines creativity, technical expertise, and a passion for innovation to deliver top-notch solutions.</p>
+
+            <h2 class="text-xl font-bold mt-6 mb-4">Our Mission</h2>
+            <p>Our mission is to build engaging, user-friendly, and high-performance websites and applications. We focus on delivering solutions that not only meet but exceed our clients' expectations, driving their success in the digital world.</p>
+
+            <h2 class="text-xl font-bold mt-6 mb-4">Meet the Team</h2>
+            <div class="space-y-4">
+                <div class="flex items-center space-x-4">
+                    <img src="/images/Riddhi.jpeg" alt="Ridhhi Mistry" class="w-16 h-16 rounded-full">
+                    <div>
+                        <h3 class="text-lg font-semibold">Riddhi Mistry</h3>
+                        <p class="text-gray-600">Lead Developer</p>
+                        <p>Riddhi leads our development team with a wealth of experience in building scalable and efficient web applications. She specializes in backend development and system architecture.</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <img src="/images/vishaw.jpeg" alt="Vishwa Lad" class="w-16 h-16 rounded-full">
+                    <div>
+                        <h3 class="text-lg font-semibold">Vishwa Lad</h3>
+                        <p class="text-gray-600">Front-End Developer</p>
+                        <p>Vishwa is our front-end expert, creating stunning and intuitive user interfaces. She is passionate about making web experiences accessible and visually engaging.</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <img src="/images/mansi.jpeg" alt="Mansi Bhojak" class="w-16 h-16 rounded-full">
+                    <div>
+                        <h3 class="text-lg font-semibold">Mansi Bhojak</h3>
+                        <p class="text-gray-600">UI/UX Designer</p>
+                        <p>Mansi designs delightful user experiences and interfaces, ensuring our applications are not only functional but also aesthetically pleasing. Her work focuses on user-centered design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

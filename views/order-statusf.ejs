@@ -1,0 +1,49 @@
+<!-- views/order-status.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status - Big Bites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --dark-green: #004d00;
+            --dark-yellow: #ffcc00; 
+            --skin-tone: #f2c6a0;
+        }
+    </style>
+</head>
+<body class="bg-[var(--skin-tone)] text-gray-900 flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-[var(--dark-green)] text-[var(--dark-yellow)] p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">Big Bites</a>
+            <div>
+                <a href="/" class="hover:underline px-4">Home</a>
+                <a href="/about" class="hover:underline px-4">About Us</a>
+                <a href="/contact" class="hover:underline px-4">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center">
+        <div class="w-full max-w-lg bg-[var(--dark-green)] text-gray-100 p-8 rounded-lg shadow-lg text-center">
+            <!-- Conditional rendering based on success or failure -->
+            <% if (status === 'success') { %>
+                <h1 class="text-3xl font-bold mb-4 text-[var(--dark-yellow)]">Order Successful!</h1>
+                <p class="text-lg mb-6">Thank you for your order. Your delicious food will be delivered shortly!</p>
+                <a href="/" class="bg-[var(--dark-yellow)] text-[var(--dark-green)] py-2 px-6 rounded-md hover:bg-yellow-500">Back to Home</a>
+            <% } else { %>
+                <h1 class="text-3xl font-bold mb-4 text-red-500">Order Failed!</h1>
+                <p class="text-lg mb-6">We couldn't process your order. Please try again or contact support if the issue persists.</p>
+                <a href="/contact" class="bg-red-500 text-[var(--skin-tone)] py-2 px-6 rounded-md hover:bg-red-600">Contact Support</a>
+                <a href="/" class="ml-4 bg-[var(--dark-yellow)] text-[var(--dark-green)] py-2 px-6 rounded-md hover:bg-yellow-500">Back to Home</a>
+            <% } %>
+        </div>
+    </main>
+
+</body>
+</html>

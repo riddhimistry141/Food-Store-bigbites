@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Big bites</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="/javascripts/cart.js"></script>
+    <style>
+        :root {
+            --dark-green: #004d00;
+            --dark-yellow: #ffcc00; 
+            --skin-tone: #f2c6a0;
+        }
+    </style>
+</head>
+<body class="bg-[var(--skin-tone)] text-gray-900 flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-[var(--dark-green)] text-[var(--dark-yellow)] p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">Big bites</a>
+            <div>
+                <a href="/" class="hover:underline px-4">Home</a>
+                <a href="/about" class="hover:underline px-4">About Us</a>
+                <a href="/contact" class="hover:underline px-4">Contact Us</a>
+                <% if (user) { %>
+                    <a href="/logout" class="hover:underline px-4">Logout</a>
+                <% } else { %>
+                    <a href="/login" class="hover:underline px-4">Login</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="flex-grow p-4">
+        <div class="w-full max-w-4xl bg-[var(--dark-green)] text-gray-100 p-8 rounded-lg shadow-md mx-auto">
+            <h1 class="text-2xl font-bold mb-6">User Profile</h1>
+            <% if (user) { %>
+                <p class="text-lg font-semibold mb-4">Name: <%= user.name %></p>
+                <p class="text-lg font-semibold mb-4">Email: <%= user.email %></p>
+                <a href="/logout" class="text-[var(--dark-yellow)] hover:underline">Logout</a>
+
+                <h2 class="text-xl font-bold mt-6 mb-4">Available Foods</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="food-items">
+                    <% foods.forEach(food => { %>
+                        <div class="bg-[var(--skin-tone)] rounded-lg shadow-lg overflow-hidden">
+                            <% if (food.image) { %>
+                                <img src="<%= food.image %>" alt="<%= food.name %>" class="w-full h-48 object-cover">
+                            <% } %>
+                            <div class="p-4">
+                                <h3 class="text-lg text-black font-semibold mb-2"><%= food.name %></h3>
+                                <p class="text-black mb-4">Price: ₹<span class="text-black"><%= food.price.toFixed(2) %></span></p>
+                                <form action="/add-to-cart" method="post" class="add-to-cart-form">
+                                    <input type="hidden" name="foodId" value="<%= food._id %>">
+                                    <button type="submit" class="bg-[var(--dark-yellow)] text-[var(--dark-green)] py-2 px-4 rounded-md hover:bg-yellow-500">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+
+                <h2 class="text-xl font-bold mt-6 mb-4">Your Cart</h2>
+                <div id="cart" class="space-y-4 mb-4">
+                </div>
+
+                <!-- New Section: Delivery or Takeaway Option -->
+                <h3 class="text-lg font-semibold mt-4 mb-2">Choose an option:</h3>
+                <form id="order-options" class="mb-4">
+                    <div class="flex items-center mb-2">
+                        <input type="radio" id="delivery" name="orderType" value="Delivery" class="mr-2">
+                        <label for="delivery" class="text-[var(--dark-yellow)]">Delivery</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="radio" id="takeaway" name="orderType" value="Takeaway" class="mr-2">
+                        <label for="takeaway" class="text-[var(--dark-yellow)]">Takeaway</label>
+                    </div>
+
+                    <!-- Address Field for Delivery Option (Hidden Initially) -->
+                    <div id="address-container" class="mt-4 hidden">
+                        <label for="address" class="block text-lg font-semibold mb-2 text-[var(--dark-yellow)]">Delivery Address:</label>
+                        <textarea id="address" name="address" rows="3" class="w-full p-2 rounded-md text-black"></textarea>
+                    </div>
+                </form>
+
+                <!-- Place Order Button -->
+                <button id="place-order" class="bg-[var(--dark-yellow)] text-[var(--dark-green)] py-2 px-4 rounded-md hover:bg-yellow-500">Place Order</button>
+
+            <% } else { %>
+                <p class="text-lg font-semibold">You are not logged in. <a href="/login" class="text-[var(--dark-yellow)] hover:underline">Login</a> to see your profile.</p>
+            <% } %>
+        </div>
+    </main>
+
+
+</body>
+</html>
