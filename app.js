@@ -28,6 +28,9 @@ mongoose.connect(process.env.MONGO_URL, {
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
+// ✅ Serve static files from public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'views')));
